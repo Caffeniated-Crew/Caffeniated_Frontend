@@ -5,7 +5,10 @@ import SignIn from './components/SignIn';
 import SignUp from './components/SignUp';
 import ViewProfile from './components/ViewProfile';
 import Events from './components/Events';
-import Mentors from './components/Mentors';
+import Mentors from './components/Mentor';
+import OtherProfile from './components/OtherProfile';
+import ConnectionPage from './components/ConnectionsPage';
+
 function App() {
   return (
     // <AuthProvider>
@@ -18,6 +21,8 @@ function App() {
           <Route path="/viewprofile" element={<ViewProfile />} />
           <Route path="/events" element={<Events />} />
           <Route path="/mentors" element={<Mentors />} />
+          <Route path="/profiles/:email" element={<OtherProfile />} />
+          <Route path="/connections" element={<ConnectionPage />} />
           </Routes>
         </div>
       </Router>

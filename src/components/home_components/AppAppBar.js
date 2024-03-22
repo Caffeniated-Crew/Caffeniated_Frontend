@@ -116,54 +116,16 @@ function AppAppBar({ mode, toggleColorMode }) {
                   sx={{ py: '6px', px: '12px' }}
                 >
                   <Typography variant="body2" color="text.primary">
-                  <Button
-                    color="primary"
-                    variant=""
-                    size="small"
-                    component="a"
-                    href="/signup"
-                  >
-                    Event
-                  </Button>
-              
+                  <MenuItem component={Link} to="/events">Event</MenuItem>
                   </Typography>
                 </MenuItem>
                 <MenuItem
                   sx={{ py: '6px', px: '12px' }}
                 >
                   <Typography variant="body2" color="text.primary">
-                  <Button
-                    color="primary"
-                    variant=""
-                    size="small"
-                    component="a"
-                    href="/signup"
-                  >
-                    Register
-                  </Button>
+                  <MenuItem component={Link} to="/mentors">Mentor</MenuItem>
                   </Typography>
                 </MenuItem>
-                {/* <MenuItem
-                  sx={{ py: '6px', px: '12px' }}
-                >
-                  <Typography variant="body2" color="text.primary">
-                    Highlights
-                  </Typography>
-                </MenuItem>
-                <MenuItem
-                  sx={{ py: '6px', px: '12px' }}
-                >
-                  <Typography variant="body2" color="text.primary">
-                    Pricing
-                  </Typography>
-                </MenuItem>
-                <MenuItem
-                  sx={{ py: '6px', px: '12px' }}
-                >
-                  <Typography variant="body2" color="text.primary">
-                    FAQ
-                  </Typography>
-                </MenuItem> */}
               </Box>
             </Box>
             <Box
@@ -176,6 +138,9 @@ function AppAppBar({ mode, toggleColorMode }) {
               <ToggleColorMode mode={mode} toggleColorMode={toggleColorMode} />
               {user ? (
                 <>
+
+                  <MenuItem component={Link} to="/connections">Connections</MenuItem>
+
                   <IconButton
                     aria-label="account of current user"
                     aria-controls="menu-appbar"
