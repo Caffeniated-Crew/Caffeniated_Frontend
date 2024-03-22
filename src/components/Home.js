@@ -10,11 +10,6 @@ import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import AutoAwesomeRoundedIcon from '@mui/icons-material/AutoAwesomeRounded';
 import AppAppBar from './home_components/AppAppBar';
 import Hero from './home_components/Hero';
-import LogoCollection from './home_components/LogoCollection';
-import Highlights from './home_components/Highlights';
-import Pricing from './home_components/Pricing';
-import Features from './home_components/Features';
-import Testimonials from './home_components/Testimonials';
 import FAQ from './home_components/FAQ';
 import Footer from './home_components/Footer';
 import getLPTheme from './home_components/getLPTheme';
@@ -76,15 +71,6 @@ export default function LandingPage() {
       <AppAppBar mode={mode} toggleColorMode={toggleColorMode} />
       <Hero />
       <Box sx={{ bgcolor: 'background.default' }}>
-        <LogoCollection />
-        <Features />
-        <Divider />
-        <Testimonials />
-        <Divider />
-        <Highlights />
-        <Divider />
-        <Pricing />
-        <Divider />
         <FAQ />
         <Divider />
         <Footer />

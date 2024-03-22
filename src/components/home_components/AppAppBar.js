@@ -1,6 +1,5 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-
 import Box from '@mui/material/Box';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
@@ -12,6 +11,12 @@ import MenuItem from '@mui/material/MenuItem';
 import Drawer from '@mui/material/Drawer';
 import MenuIcon from '@mui/icons-material/Menu';
 import ToggleColorMode from './ToggleColorMode';
+import { useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
+import { Menu, IconButton } from '@mui/material';
+import { Link } from 'react-router-dom';
+
+import AccountCircle from '@mui/icons-material/AccountCircle';
 
 const logoStyle = {
   width: '140px',
@@ -20,25 +25,41 @@ const logoStyle = {
 };
 
 function AppAppBar({ mode, toggleColorMode }) {
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.user);
   const [open, setOpen] = React.useState(false);
+  const [anchorEl, setAnchorEl] = React.useState(null);
 
   const toggleDrawer = (newOpen) => () => {
     setOpen(newOpen);
   };
 
-  const scrollToSection = (sectionId) => {
-    const sectionElement = document.getElementById(sectionId);
-    const offset = 128;
-    if (sectionElement) {
-      const targetScroll = sectionElement.offsetTop - offset;
-      sectionElement.scrollIntoView({ behavior: 'smooth' });
-      window.scrollTo({
-        top: targetScroll,
-        behavior: 'smooth',
-      });
-      setOpen(false);
-    }
+
+  const handleProfileMenuOpen = (event) => {
+    setAnchorEl(event.currentTarget);
   };
+
+  const handleProfileMenuClose = () => {
+    setAnchorEl(null);
+  };
+
+  const handleLogout = () => {
+    dispatch({ type: 'LOGOUT' });
+    // Optionally, you can clear the user data from local storage here
+    localStorage.removeItem('user');
+  };
+
+  const renderProfileMenu = (
+    <Menu
+      anchorEl={anchorEl}
+      open={Boolean(anchorEl)}
+      onClose={handleProfileMenuClose}
+      onClick={handleProfileMenuClose}
+    >
+      <MenuItem component={Link} to="/viewprofile">View Profile</MenuItem>
+    <MenuItem onClick={handleLogout}>Logout</MenuItem>
+    </Menu>
+  );
 
   return (
     <div>
@@ -92,23 +113,37 @@ function AppAppBar({ mode, toggleColorMode }) {
               />
               <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
                 <MenuItem
-                  onClick={() => scrollToSection('features')}
                   sx={{ py: '6px', px: '12px' }}
                 >
                   <Typography variant="body2" color="text.primary">
-                    Features
+                  <Button
+                    color="primary"
+                    variant=""
+                    size="small"
+                    component="a"
+                    href="/signup"
+                  >
+                    Event
+                  </Button>
+              
                   </Typography>
                 </MenuItem>
                 <MenuItem
-                  onClick={() => scrollToSection('testimonials')}
                   sx={{ py: '6px', px: '12px' }}
                 >
                   <Typography variant="body2" color="text.primary">
-                    Testimonials
+                  <Button
+                    color="primary"
+                    variant=""
+                    size="small"
+                    component="a"
+                    href="/signup"
+                  >
+                    Register
+                  </Button>
                   </Typography>
                 </MenuItem>
-                <MenuItem
-                  onClick={() => scrollToSection('highlights')}
+                {/* <MenuItem
                   sx={{ py: '6px', px: '12px' }}
                 >
                   <Typography variant="body2" color="text.primary">
@@ -116,7 +151,6 @@ function AppAppBar({ mode, toggleColorMode }) {
                   </Typography>
                 </MenuItem>
                 <MenuItem
-                  onClick={() => scrollToSection('pricing')}
                   sx={{ py: '6px', px: '12px' }}
                 >
                   <Typography variant="body2" color="text.primary">
@@ -124,13 +158,12 @@ function AppAppBar({ mode, toggleColorMode }) {
                   </Typography>
                 </MenuItem>
                 <MenuItem
-                  onClick={() => scrollToSection('faq')}
                   sx={{ py: '6px', px: '12px' }}
                 >
                   <Typography variant="body2" color="text.primary">
                     FAQ
                   </Typography>
-                </MenuItem>
+                </MenuItem> */}
               </Box>
             </Box>
             <Box
@@ -141,24 +174,44 @@ function AppAppBar({ mode, toggleColorMode }) {
               }}
             >
               <ToggleColorMode mode={mode} toggleColorMode={toggleColorMode} />
-              <Button
-                color="primary"
-                variant="text"
-                size="small"
-                component="a"
-                href="/login"
-              >
-                Sign in
-              </Button>
-              <Button
-                color="primary"
-                variant="contained"
-                size="small"
-                component="a"
-                href="/signup"
-              >
-                Sign up
-              </Button>
+              {user ? (
+                <>
+                  <IconButton
+                    aria-label="account of current user"
+                    aria-controls="menu-appbar"
+                    aria-haspopup="true"
+                    onClick={handleProfileMenuOpen}
+                    color="black"
+                  >
+                    <AccountCircle />
+                    <Typography variant="body1" sx={{ ml: 1 }}>
+                      {user}
+                    </Typography>
+                  </IconButton>
+                  {renderProfileMenu}
+                </>
+              ) : (
+                <>
+                  <Button
+                    color="primary"
+                    variant="text"
+                    size="small"
+                    component="a"
+                    href="/login"
+                  >
+                    Login
+                  </Button>
+                  <Button
+                    color="primary"
+                    variant="contained"
+                    size="small"
+                    component="a"
+                    href="/signup"
+                  >
+                    Register
+                  </Button>
+                </>
+              )}
             </Box>
             <Box sx={{ display: { sm: '', md: 'none' } }}>
               <Button
@@ -189,19 +242,21 @@ function AppAppBar({ mode, toggleColorMode }) {
                   >
                     <ToggleColorMode mode={mode} toggleColorMode={toggleColorMode} />
                   </Box>
-                  <MenuItem onClick={() => scrollToSection('features')}>
+                  <MenuItem >
                     Features
                   </MenuItem>
-                  <MenuItem onClick={() => scrollToSection('testimonials')}>
+                  <MenuItem >
                     Testimonials
                   </MenuItem>
-                  <MenuItem onClick={() => scrollToSection('highlights')}>
+                  <MenuItem >
                     Highlights
                   </MenuItem>
-                  <MenuItem onClick={() => scrollToSection('pricing')}>
+                  <MenuItem >
                     Pricing
                   </MenuItem>
-                  <MenuItem onClick={() => scrollToSection('faq')}>FAQ</MenuItem>
+                  <MenuItem >
+                    FAQ
+                  </MenuItem>
                   <Divider />
                   <MenuItem>
                     <Button

@@ -6,9 +6,9 @@ const AuthContext = createContext();
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
 
-  const login = (userData) => {
+  const login = (email) => {
     // Your login logic here, e.g., setting user data, storing token, etc.
-    setUser(userData);
+    setUser(email);
   };
 
   const logout = () => {

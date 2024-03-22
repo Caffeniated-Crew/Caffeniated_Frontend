@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { useContext } from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -14,10 +13,13 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import axios from 'axios'; // Import Axios
-import { useAuth } from './global/AuthContext'; // Import useAuth hook
+// import { useAuth } from './global/AuthContext'; // Import useAuth hook
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 function SignIn() {
-  const { login } = useContext(useAuth);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const [showPassword, setShowPassword] = React.useState(false);
   const [error] = React.useState(null);
@@ -38,9 +40,9 @@ function SignIn() {
       if (response.status === 200) {
         // Redirect to '/'
         console.log("Login successful:", response.data)
-        login({ email }); // Example: Passing user data to login function
-        alert(login)
-        // window.location.replace('/');
+        dispatch({ type: 'LOGIN', payload: email }); // Dispatch LOGIN action
+        // alert(user);
+        navigate('/'); // Redirect to the root path
       }
     } catch (error) {
       // Parse the response JSON if available
@@ -77,7 +79,7 @@ function SignIn() {
             <LockOutlinedIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
-            Sign in
+            Login
           </Typography>
           <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
             <TextField
