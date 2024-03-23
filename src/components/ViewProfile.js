@@ -38,7 +38,7 @@ const ViewProfile = () => {
     <>
     <AppAppBar />
 
-    <Box sx={{ p: 4 }}>
+    <Box sx={{ p: 4, paddingTop: '100px' }}> {/* Add padding top to create space for the AppAppBar */}
       <Grid container spacing={4}>
         <Grid item xs={12} sm={4}>
           <Card>

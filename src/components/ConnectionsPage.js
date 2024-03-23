@@ -55,7 +55,7 @@ const ConnectionsPage = () => {
     <>
     <AppAppBar />
 
-    <Box sx={{ p: 4 }}>
+    <Box sx={{ p: 4, paddingTop: '100px' }}>
       <Grid container spacing={4}>
         <Grid item xs={12} md={6}>
           <Typography variant="h5" gutterBottom>

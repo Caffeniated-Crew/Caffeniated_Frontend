@@ -48,7 +48,7 @@ const ChatWindow = () => {
     <>
     <AppAppBar />
 
-    <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', mt: 4 }}>
+    <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', mt: 4, paddingTop: '100px' }}>
       <Typography variant="h4" gutterBottom>
         Chat with {receiver}
       </Typography>
