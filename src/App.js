@@ -8,7 +8,8 @@ import Events from './components/Events';
 import Mentors from './components/Mentor';
 import OtherProfile from './components/OtherProfile';
 import ConnectionPage from './components/ConnectionsPage';
-
+import Update from './components/Update';
+import Chat from './components/Chat';
 function App() {
   return (
     // <AuthProvider>
@@ -23,6 +24,9 @@ function App() {
           <Route path="/mentors" element={<Mentors />} />
           <Route path="/profiles/:email" element={<OtherProfile />} />
           <Route path="/connections" element={<ConnectionPage />} />
+          <Route path="/update" element={<Update />} />
+          <Route path="/chat" element={<Chat />} />
+          
           </Routes>
         </div>
       </Router>

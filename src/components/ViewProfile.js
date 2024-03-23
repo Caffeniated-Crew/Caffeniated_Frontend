@@ -1,13 +1,13 @@
 import React from 'react';
-import { Box, Typography, Grid, List, ListItem, ListItemIcon, ListItemText, Divider, Avatar, Card, CardContent, Chip } from '@mui/material';
+import { Box, Typography, Grid, List, ListItem, ListItemIcon, ListItemText, Divider, Avatar, Card, CardContent } from '@mui/material';
 import CodeIcon from '@mui/icons-material/Code';
 import SchoolIcon from '@mui/icons-material/School';
 import WorkIcon from '@mui/icons-material/Work';
 import LinkIcon from '@mui/icons-material/Link';
-import CheckCircleIcon from '@mui/icons-material/CheckCircle';
-import PendingIcon from '@mui/icons-material/Pending';
 import { useSelector } from 'react-redux';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
+import MenuItem from '@mui/material/MenuItem';
 import { useEffect, useState } from 'react';
 
 const ViewProfile = () => {
@@ -45,19 +45,9 @@ const ViewProfile = () => {
               </Typography>
               <Typography variant="body2" color="text.secondary" align="center">
                 {data.email}
+                <MenuItem component={Link} to="/update">Update Profile</MenuItem>
+
               </Typography>
-              <Box mt={2}>
-                <Typography variant="subtitle2" gutterBottom>Accepted Connections:</Typography>
-                {data.madeConnection.map((email, index) => (
-                  <Chip key={index} icon={<CheckCircleIcon />} label={email} color="primary" sx={{ mr: 1, mb: 1 }} />
-                ))}
-              </Box>
-              <Box mt={2}>
-                <Typography variant="subtitle2" gutterBottom>Pending Connections:</Typography>
-                {data.pendingConnection.map((email, index) => (
-                  <Chip key={index} icon={<PendingIcon />} label={email} color="warning" sx={{ mr: 1, mb: 1 }} />
-                ))}
-              </Box>
             </CardContent>
           </Card>
         </Grid>

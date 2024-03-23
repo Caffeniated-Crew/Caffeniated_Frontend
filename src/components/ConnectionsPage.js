@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Box, Typography, Grid, List, ListItem, ListItemText, Divider, Button } from '@mui/material';
 import { useSelector } from 'react-redux';
-import ChatIcon from '@mui/icons-material/Chat';
+import MenuItem from '@mui/material/MenuItem';
+import { Link } from 'react-router-dom';
 
 const ConnectionsPage = () => {
   const user = useSelector((state) => state.user);
@@ -61,14 +62,9 @@ const ConnectionsPage = () => {
               <React.Fragment key={index}>
                 <ListItem>
                   <ListItemText primary={email} />
-                  <Button
-                    variant="contained"
-                    color="primary"
-                    startIcon={<ChatIcon />}
-                    onClick={() => console.log(`Chat with ${email}`)}
-                  >
+                  <MenuItem component={Link} to={`/chat?sender=${user}&receiver=${email}`}>
                     Chat
-                  </Button>
+                    </MenuItem>
                 </ListItem>
                 <Divider />
               </React.Fragment>
