@@ -4,6 +4,7 @@ import { Box, Typography, Grid, List, ListItem, ListItemText, Divider, Button } 
 import { useSelector } from 'react-redux';
 import MenuItem from '@mui/material/MenuItem';
 import { Link } from 'react-router-dom';
+import AppAppBar from './home_components/AppAppBar';
 
 const ConnectionsPage = () => {
   const user = useSelector((state) => state.user);
@@ -51,6 +52,9 @@ const ConnectionsPage = () => {
   const { data } = profileData;
 
   return (
+    <>
+    <AppAppBar />
+
     <Box sx={{ p: 4 }}>
       <Grid container spacing={4}>
         <Grid item xs={12} md={6}>
@@ -95,6 +99,7 @@ const ConnectionsPage = () => {
         </Grid>
       </Grid>
     </Box>
+    </>
   );
 };
 

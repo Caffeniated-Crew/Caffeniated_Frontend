@@ -16,6 +16,7 @@ import axios from 'axios'; // Import Axios
 // import { useAuth } from './global/AuthContext'; // Import useAuth hook
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import AppAppBar from './home_components/AppAppBar';
 
 function SignIn() {
   const dispatch = useDispatch();
@@ -64,6 +65,8 @@ function SignIn() {
   };
 
   return (
+    <>
+    <AppAppBar />
     <ThemeProvider theme={createTheme()}>
       <Container component="main" maxWidth="xs">
         <CssBaseline />
@@ -138,6 +141,7 @@ function SignIn() {
         </Box>
       </Container>
     </ThemeProvider>
+    </>
   );
 }
 

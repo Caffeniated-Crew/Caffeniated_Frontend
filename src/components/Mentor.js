@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Container, Grid, Card, CardContent, Typography, CardMedia } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
+import AppAppBar from './home_components/AppAppBar';
 
 const Mentor = () => {
   const [mentors, setMentors] = useState([]);
@@ -21,6 +22,9 @@ const Mentor = () => {
   };
 
   return (
+    <>
+    <AppAppBar />
+
     <React.Fragment>
       <Container maxWidth="lg">
         <Grid container spacing={3}>
@@ -53,6 +57,7 @@ const Mentor = () => {
         </Grid>
       </Container>
     </React.Fragment>
+    </>
   );
 };
 

@@ -66,6 +66,9 @@ export default function LandingPage() {
 
 
   return (
+    <>
+    <AppAppBar />
+
     <ThemeProvider theme={showCustomTheme ? LPtheme : defaultTheme}>
       <CssBaseline />
       <AppAppBar mode={mode} toggleColorMode={toggleColorMode} />
@@ -76,5 +79,6 @@ export default function LandingPage() {
         <Footer />
       </Box>
     </ThemeProvider>
+    </>
   );
 }

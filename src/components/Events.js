@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Container, Grid, Card, CardContent, Typography, CardMedia, Button, ButtonGroup } from '@mui/material';
+import AppAppBar from './home_components/AppAppBar';
 
 const EventsPage = () => {
   const [events, setEvents] = useState([]);
@@ -21,6 +22,9 @@ const EventsPage = () => {
   };
 
   return (
+    <>
+    <AppAppBar />
+
     <React.Fragment>
       <Container maxWidth="lg">
       <ButtonGroup 
@@ -73,6 +77,7 @@ const EventsPage = () => {
         </Grid>
       </Container>
     </React.Fragment>
+    </>
   );
 };
 

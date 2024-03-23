@@ -21,7 +21,7 @@ function Copyright() {
   return (
     <Typography variant="body2" color="text.secondary" mt={1}>
       {'Copyright © '}
-      <Link href="https://mui.com/">Sitemark&nbsp;</Link>
+      <Link href="/">SkillExchange&nbsp;</Link>
       {new Date().getFullYear()}
     </Typography>
   );
@@ -98,19 +98,10 @@ export default function Footer() {
           }}
         >
           <Typography variant="body2" fontWeight={600}>
-            Product
+            1-1 Sessions
           </Typography>
           <Link color="text.secondary" href="#">
-            Features
-          </Link>
-          <Link color="text.secondary" href="#">
-            Testimonials
-          </Link>
-          <Link color="text.secondary" href="#">
-            Highlights
-          </Link>
-          <Link color="text.secondary" href="#">
-            Pricing
+            Mentors
           </Link>
           <Link color="text.secondary" href="#">
             FAQs
@@ -123,18 +114,6 @@ export default function Footer() {
             gap: 1,
           }}
         >
-          <Typography variant="body2" fontWeight={600}>
-            Company
-          </Typography>
-          <Link color="text.secondary" href="#">
-            About us
-          </Link>
-          <Link color="text.secondary" href="#">
-            Careers
-          </Link>
-          <Link color="text.secondary" href="#">
-            Press
-          </Link>
         </Box>
         <Box
           sx={{
@@ -190,7 +169,7 @@ export default function Footer() {
         >
           <IconButton
             color="inherit"
-            href="https://github.com/mui"
+            href="https://github.com/"
             aria-label="GitHub"
             sx={{ alignSelf: 'center' }}
           >
@@ -198,7 +177,7 @@ export default function Footer() {
           </IconButton>
           <IconButton
             color="inherit"
-            href="https://twitter.com/MaterialUI"
+            href="https://twitter.com/"
             aria-label="X"
             sx={{ alignSelf: 'center' }}
           >
@@ -206,7 +185,7 @@ export default function Footer() {
           </IconButton>
           <IconButton
             color="inherit"
-            href="https://www.linkedin.com/company/mui/"
+            href="https://www.linkedin.com/"
             aria-label="LinkedIn"
             sx={{ alignSelf: 'center' }}
           >

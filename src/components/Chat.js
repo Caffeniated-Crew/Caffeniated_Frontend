@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useLocation } from 'react-router-dom';
 import { Box, Typography, Paper, TextField, Button } from '@mui/material';
+import AppAppBar from './home_components/AppAppBar';
 
 const ChatWindow = () => {
   const location = useLocation();
@@ -44,6 +45,9 @@ const ChatWindow = () => {
   };
 
   return (
+    <>
+    <AppAppBar />
+
     <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', mt: 4 }}>
       <Typography variant="h4" gutterBottom>
         Chat with {receiver}
@@ -91,6 +95,7 @@ const ChatWindow = () => {
         </Button>
       </form>
     </Box>
+    </>
   );
 };
 

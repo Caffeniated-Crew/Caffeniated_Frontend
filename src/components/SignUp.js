@@ -18,6 +18,7 @@ import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import AppAppBar from './home_components/AppAppBar';
 
 function SignUp() {
   const [password, setPassword] = React.useState('');
@@ -99,6 +100,8 @@ function SignUp() {
   };
 
   return (
+    <>
+    <AppAppBar />
     <ThemeProvider theme={createTheme()}>
       <Container component="main" maxWidth="xs">
         <CssBaseline />
@@ -275,6 +278,7 @@ function SignUp() {
         </Box>
       </Container>
     </ThemeProvider>
+    </>
   );
 }
 

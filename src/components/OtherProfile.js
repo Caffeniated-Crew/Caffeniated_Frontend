@@ -8,6 +8,7 @@ import WorkIcon from '@mui/icons-material/Work';
 import LinkIcon from '@mui/icons-material/Link';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import { useSelector } from 'react-redux';
+import AppAppBar from './home_components/AppAppBar';
 
 const ViewProfile = () => {
   const { email } = useParams();
@@ -47,6 +48,8 @@ const ViewProfile = () => {
   const { data } = profileData;
 
   return (
+    <>
+    <AppAppBar />
     <Box sx={{ p: 4 }}>
       <Grid container spacing={4}>
         <Grid item xs={12} sm={4}>
@@ -139,6 +142,7 @@ const ViewProfile = () => {
         </Grid>
       </Grid>
     </Box>
+    </>
   );
 };
 

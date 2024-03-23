@@ -9,6 +9,7 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import MenuItem from '@mui/material/MenuItem';
 import { useEffect, useState } from 'react';
+import AppAppBar from './home_components/AppAppBar';
 
 const ViewProfile = () => {
   const user = useSelector((state) => state.user);
@@ -34,6 +35,9 @@ const ViewProfile = () => {
   const { data } = profileData;
 
   return (
+    <>
+    <AppAppBar />
+
     <Box sx={{ p: 4 }}>
       <Grid container spacing={4}>
         <Grid item xs={12} sm={4}>
@@ -121,6 +125,7 @@ const ViewProfile = () => {
         </Grid>
       </Grid>
     </Box>
+    </>
   );
 };
 

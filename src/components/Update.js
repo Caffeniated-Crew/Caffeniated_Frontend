@@ -3,6 +3,7 @@ import { Box, Typography, Grid, Avatar, Card, CardContent, TextField, Button, Se
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import AppAppBar from './home_components/AppAppBar';
 
 const ViewProfile = () => {
   const user = useSelector((state) => state.user);
@@ -97,6 +98,8 @@ const ViewProfile = () => {
   const { data } = profileData;
 
   return (
+    <>
+    <AppAppBar />
     <Box sx={{ p: 4 }}>
       <Grid container spacing={4}>
         <Grid item xs={12} sm={4}>
@@ -180,6 +183,7 @@ const ViewProfile = () => {
         </Grid>
       </Grid>
     </Box>
+    </>
   );
 };
 

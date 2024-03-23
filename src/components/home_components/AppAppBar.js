@@ -18,12 +18,6 @@ import { Link } from 'react-router-dom';
 
 import AccountCircle from '@mui/icons-material/AccountCircle';
 
-const logoStyle = {
-  width: '140px',
-  height: 'auto',
-  cursor: 'pointer',
-};
-
 function AppAppBar({ mode, toggleColorMode }) {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
@@ -104,19 +98,14 @@ function AppAppBar({ mode, toggleColorMode }) {
                 px: 0,
               }}
             >
-              <img
-                src={
-                  'https://assets-global.website-files.com/61ed56ae9da9fd7e0ef0a967/61f12e6faf73568658154dae_SitemarkDefault.svg'
-                }
-                style={logoStyle}
-                alt="logo of sitemark"
-              />
+            <MenuItem component={Link} to="/">SkillExchange</MenuItem>
+
               <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
                 <MenuItem
                   sx={{ py: '6px', px: '12px' }}
                 >
                   <Typography variant="body2" color="text.primary">
-                  <MenuItem component={Link} to="/events">Event</MenuItem>
+                  <MenuItem component={Link} to="/events">1-1 Sessions</MenuItem>
                   </Typography>
                 </MenuItem>
                 <MenuItem
@@ -126,6 +115,14 @@ function AppAppBar({ mode, toggleColorMode }) {
                   <MenuItem component={Link} to="/mentors">Mentor</MenuItem>
                   </Typography>
                 </MenuItem>
+                <MenuItem
+                  sx={{ py: '6px', px: '12px' }}
+                >
+                <Typography variant="body2" color="text.primary">
+                <MenuItem component={Link} to="/">FAQ</MenuItem>
+                  </Typography>
+                  </MenuItem>
+
               </Box>
             </Box>
             <Box
@@ -207,21 +204,16 @@ function AppAppBar({ mode, toggleColorMode }) {
                   >
                     <ToggleColorMode mode={mode} toggleColorMode={toggleColorMode} />
                   </Box>
-                  <MenuItem >
-                    Features
+                  <MenuItem component={Link} to="/events">
+                    1 - 1 Sessions
                   </MenuItem>
-                  <MenuItem >
-                    Testimonials
+                  <MenuItem component={Link} to="/mentors">
+                    Mentor
                   </MenuItem>
-                  <MenuItem >
-                    Highlights
-                  </MenuItem>
-                  <MenuItem >
-                    Pricing
-                  </MenuItem>
-                  <MenuItem >
+                  <MenuItem>
                     FAQ
                   </MenuItem>
+
                   <Divider />
                   <MenuItem>
                     <Button
