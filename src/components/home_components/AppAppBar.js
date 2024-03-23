@@ -41,6 +41,7 @@ function AppAppBar({ mode, toggleColorMode }) {
     dispatch({ type: 'LOGOUT' });
     // Optionally, you can clear the user data from local storage here
     localStorage.removeItem('user');
+    window.location.href = '/';
   };
 
   const renderProfileMenu = (
