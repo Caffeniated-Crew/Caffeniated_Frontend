@@ -8,17 +8,9 @@ import AppAppBar from './home_components/AppAppBar';
 const ViewProfile = () => {
   const user = useSelector((state) => state.user);
   const [profileData, setProfileData] = useState({});
-  const [updateFormData, setUpdateFormData] = useState({
-    name: '',
-    email: '',
-    password: '',
-    skills: [],
-    university: '',
-    degree: '',
-    certificates: [],
-    workExperience: [],
-    yearOfGrad: ''
-  });
+  const [skills, setSkills] = useState([]);
+  const [certificates, setCertificates] = useState([]);
+  const [workExperience, setWorkExperience] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -35,56 +27,59 @@ const ViewProfile = () => {
 
   const handleSkillsChange = (e) => {
     const { value } = e.target;
-    setUpdateFormData({ ...updateFormData, skills: value });
+    setSkills(value);
   };
 
   const handleCertificatesChange = (e, index) => {
     const { value } = e.target;
-    const updatedCertificates = [...updateFormData.certificates];
+    const updatedCertificates = [...certificates];
     updatedCertificates[index] = value;
-    setUpdateFormData({ ...updateFormData, certificates: updatedCertificates });
+    setCertificates(updatedCertificates);
   };
 
   const handleAddCertificate = () => {
-    setUpdateFormData({ ...updateFormData, certificates: [...updateFormData.certificates, ''] });
+    setCertificates([...certificates, '']);
   };
 
   const handleRemoveCertificate = (index) => {
-    const updatedCertificates = [...updateFormData.certificates];
+    const updatedCertificates = [...certificates];
     updatedCertificates.splice(index, 1);
-    setUpdateFormData({ ...updateFormData, certificates: updatedCertificates });
+    setCertificates(updatedCertificates);
   };
 
   const handleWorkExperienceChange = (e, index, key) => {
     const { value } = e.target;
-    const updatedWorkExperience = [...updateFormData.workExperience];
+    const updatedWorkExperience = [...workExperience];
     updatedWorkExperience[index][key] = value;
-    setUpdateFormData({ ...updateFormData, workExperience: updatedWorkExperience });
+    setWorkExperience(updatedWorkExperience);
   };
 
   const handleAddWorkExperience = () => {
-    setUpdateFormData({
-      ...updateFormData,
-      workExperience: [...updateFormData.workExperience, { name: '', startdate: '', enddate: '' }]
-    });
+    setWorkExperience([...workExperience, { name: '', start: '', end: '' }]);
   };
 
   const handleRemoveWorkExperience = (index) => {
-    const updatedWorkExperience = [...updateFormData.workExperience];
+    const updatedWorkExperience = [...workExperience];
     updatedWorkExperience.splice(index, 1);
-    setUpdateFormData({ ...updateFormData, workExperience: updatedWorkExperience });
+    setWorkExperience(updatedWorkExperience);
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     try {
-      const payload = {
-        email: user, // Assuming email is retrieved from Redux store
-        skills: updateFormData.skills,
-        certificates: updateFormData.certificates,
-        workExperience: updateFormData.workExperience
-      };
-      await axios.post(`https://caffiniated-backend.onrender.com/profile/updateProfile`, payload);
+      const payload = JSON.stringify({
+        email: user,
+        skills,
+        certificate: certificates,
+        work: workExperience.map(exp => `${exp.name}.${exp.start}.${exp.end}`)
+      });
+
+      await axios.post(`https://caffiniated-backend.onrender.com/profile/updateProfile`, payload, {
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      });
       console.log('Profile updated successfully!');
     } catch (error) {
       console.error('Error updating profile:', error);
@@ -100,7 +95,7 @@ const ViewProfile = () => {
   return (
     <>
     <AppAppBar />
-    <Box sx={{ p: 4, paddingTop: '64px' }}> {/* Add padding top to create space for the AppAppBar */}
+    <Box sx={{ p: 4, paddingTop: '100px' }}> {/* Add padding top to create space for the AppAppBar */}
       <Grid container spacing={4}>
         <Grid item xs={12} sm={4}>
           <Card>
@@ -123,7 +118,7 @@ const ViewProfile = () => {
                 labelId="skills-label"
                 id="skills"
                 multiple
-                value={updateFormData.skills}
+                value={skills}
                 onChange={handleSkillsChange}
               >
                 <MenuItem value="JavaScript">JavaScript</MenuItem>
@@ -133,7 +128,7 @@ const ViewProfile = () => {
             </FormControl>
 
             {/* Input fields for certificates */}
-            {updateFormData.certificates.map((certificate, index) => (
+            {certificates.map((certificate, index) => (
               <div key={index}>
                 <TextField
                   fullWidth
@@ -148,7 +143,7 @@ const ViewProfile = () => {
             <Button variant="contained" onClick={handleAddCertificate}>Add Certificate</Button>
 
             {/* Input fields for work experience */}
-            {updateFormData.workExperience.map((experience, index) => (
+            {workExperience.map((experience, index) => (
               <div key={index}>
                 <TextField
                   fullWidth
@@ -162,16 +157,16 @@ const ViewProfile = () => {
                   margin="normal"
                   type="date"
                   label="Start Date"
-                  value={experience.startdate}
-                  onChange={(e) => handleWorkExperienceChange(e, index, 'startdate')}
+                  value={experience.start}
+                  onChange={(e) => handleWorkExperienceChange(e, index, 'start')}
                 />
                 <TextField
                   fullWidth
                   margin="normal"
                   type="date"
                   label="End Date"
-                  value={experience.enddate}
-                  onChange={(e) => handleWorkExperienceChange(e, index, 'enddate')}
+                  value={experience.end}
+                  onChange={(e) => handleWorkExperienceChange(e, index, 'end')}
                 />
                 <Button variant="contained" color="secondary" onClick={() => handleRemoveWorkExperience(index)}>Remove Experience</Button>
               </div>

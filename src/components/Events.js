@@ -26,7 +26,7 @@ const EventsPage = () => {
     <AppAppBar />
 
     <React.Fragment>
-      <Container maxWidth="lg">
+      <Container maxWidth="lg" sx={{ padding: '100px' }}>
       <ButtonGroup 
         variant="contained" 
         aria-label="outlined primary button group" 

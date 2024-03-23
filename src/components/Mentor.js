@@ -26,7 +26,7 @@ const Mentor = () => {
     <AppAppBar />
 
     <React.Fragment>
-      <Container maxWidth="lg">
+      <Container maxWidth="lg" sx={{ padding: '100px' }} >
         <Grid container spacing={3}>
           {mentors.map((mentor) => (
             <Grid item xs={12} sm={6} md={4} key={mentor._id}>
@@ -42,7 +42,10 @@ const Mentor = () => {
                     {mentor.name}
                   </Typography>
                   <Typography variant="body2" color="textSecondary" component="p">
-                    {mentor.email}
+                    Skills: {mentor.skills.join(', ')}
+                  </Typography>
+                  <Typography variant="body2" color="textSecondary" component="p">
+                    Email: {mentor.email}
                   </Typography>
                   <Typography variant="body2" color="textSecondary" component="p">
                     University: {mentor.university}
